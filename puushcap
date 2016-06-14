@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# make temp file
+tmp=$(mktemp /tmp/puushfile.XXXXXXXX.png)
+
+# run shutter
+shutter $@ --output=$tmp --no_session --exit_after_capture
+echo "Puushing..."
+
+# puush temp file
+puush -c $tmp
+
+# remove temp file
+rm $tmp
